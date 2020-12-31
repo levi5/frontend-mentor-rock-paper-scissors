@@ -65,6 +65,12 @@ const Header = styled.header`
 			padding: 2rem 1.5rem;
 		}
 	}
+
+	@media (max-width: 375px) {
+		#scoreboard {
+			max-width: 35rem;
+		}
+	}
 `;
 
 export { Header };

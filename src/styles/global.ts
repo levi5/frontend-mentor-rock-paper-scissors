@@ -21,6 +21,9 @@ body{
 html, body, #__next{
     width:100%;
     height:100%;
+    display:flex;
+    justify-content:center;
+    background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
 }
 h1, h2,h3,h4,h5{
     font-family: 'Barlow Semi Condensed', sans-serif;

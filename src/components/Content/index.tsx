@@ -1,19 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from 'react';
+
 import Paper from 'components/Paper';
 import Rock from 'components/Rock';
 import Scissors from 'components/Scissors';
-import { useState } from 'react';
-import * as styles from './styles';
+import Result from './Result/index';
 
-type Player = {
-	id: number;
-	name: string;
-	wins: Array<number>;
-};
-type PlayerWinner = {
-	id: number;
-	name: string;
-	win: string;
-};
+import { values } from '../../config/data';
+
+import { Values, PlayerWinner } from '../../@types';
+
+import * as styles from './styles';
 
 const Content = () => {
 	const [machineState, setMachineState] = useState('');
@@ -28,26 +25,10 @@ const Content = () => {
 			win: ''
 		})
 	);
-	const [objOptions, setOptions] = useState([
-		{
-			id: 1,
-			name: 'rock',
-			wins: [3]
-		},
-		{
-			id: 2,
-			name: 'paper',
-			wins: [1]
-		},
-		{
-			id: 3,
-			name: 'scissors',
-			wins: [2]
-		}
-	]);
+	// const [objOptions, setOptions] = useState((): Array<Values> => values);
 
 	function player(option: string) {
-		const [playerOption] = objOptions.filter((item) => {
+		const [playerOption] = values.filter((item) => {
 			const { name } = item;
 			if (name === option) return item;
 		});
@@ -55,15 +36,15 @@ const Content = () => {
 	}
 
 	function machine() {
-		const number = Math.floor(Math.random() * objOptions.length) + 1;
-		const [machineOption] = objOptions.filter((item) => {
+		const number = Math.floor(Math.random() * values.length) + 1;
+		const [machineOption] = values.filter((item) => {
 			const { id } = item;
 			if (id === number) return item;
 		});
 		return machineOption;
 	}
 
-	function winner(player: Player, machine: Player) {
+	function winner(player: Values, machine: Values) {
 		if (player.id !== machine.id) {
 			let playerWinner;
 
@@ -97,14 +78,13 @@ const Content = () => {
 	function game(option: string) {
 		const playerOption = player(option);
 		const machineOption = machine();
-		setMachineState(machineOption.name);
-
 		const result = winner(playerOption, machineOption);
-		setWinner(result);
 
+		setMachineState(machineOption.name);
+		setWinner(result);
 		setTimeout(() => {
 			setTime(true);
-		}, 1500);
+		}, 800);
 	}
 
 	function select(e: any) {
@@ -116,52 +96,6 @@ const Content = () => {
 	function back() {
 		setTime(false);
 		setShowResult(!showResult);
-	}
-
-	function renderOption(name: string) {
-		let button: JSX.Element;
-		if (name === 'paper') {
-			return (button = <Paper />);
-		} else if (name === 'scissors') {
-			return (button = <Scissors />);
-		} else if (name === 'rock') {
-			return (button = <Rock />);
-		}
-	}
-
-	function renderPlayerOption() {
-		return renderOption(option);
-	}
-	function renderMachineOption() {
-		return renderOption(machineState);
-	}
-
-	function resultPlayerWinner() {
-		let fragment: JSX.Element;
-		if (playerWinner?.win == 'machine') {
-			fragment = (
-				<>
-					<h1>You lose</h1>
-					<button onClick={back}>play again</button>
-				</>
-			);
-		} else if (playerWinner?.win == 'player') {
-			fragment = (
-				<>
-					<h1>You win</h1>
-					<button onClick={back}>play again</button>
-				</>
-			);
-		} else {
-			fragment = (
-				<>
-					<h1>nobody won</h1>
-					<button onClick={back}>play again</button>
-				</>
-			);
-		}
-
-		return fragment;
 	}
 
 	return (
@@ -197,25 +131,17 @@ const Content = () => {
 					</div>
 				</section>
 			) : (
-				<section id="contains-result">
-					<div id="contains-result-player">
-						<h3>you picked</h3>
-						{renderPlayerOption()}
-					</div>
-
-					<div className={`display-result${time ? ' active' : ''}`}>
-						{resultPlayerWinner()}
-					</div>
-
-					<div id="contains-result-machine">
-						{
-							<>
-								<h3>the house picked</h3>
-								{renderMachineOption()}
-							</>
-						}
-					</div>
-				</section>
+				<Result
+					Time={time}
+					Winner={playerWinner}
+					States={{
+						playerState: option,
+						machineState: machineState
+					}}
+					Functions={{
+						Back: back
+					}}
+				/>
 			)}
 		</styles.Wrapper>
 	);
