@@ -18,7 +18,7 @@ const Header = styled.header`
 		justify-content: space-between;
 		align-items: center;
 		border-radius: 1rem;
-		border: 2px solid hsl(217, 16%, 45%);
+		border: 2px solid #606e85;
 	}
 	#scoreboard .group-01 {
 		display: flex;
@@ -49,12 +49,12 @@ const Header = styled.header`
 		font-size: 1.5rem;
 		text-transform: uppercase;
 		letter-spacing: 0.2rem;
-		color: hsl(229, 64%, 46%);
+		color: #2a46c0;
 	}
 	#scoreboard .group-01 #score .score-number {
 		font-size: 5.2rem;
 		font-weight: 700;
-		color: hsl(229, 25%, 31%);
+		color: #3b4363;
 	}
 
 	@media (max-width: 620px) {

@@ -1,9 +1,38 @@
 import { AppProps } from 'next/app';
+import { useState } from 'react';
 import Head from 'next/head';
 
 import GlobalStyle from 'styles/global';
 
+import scoreboardContext from '../contexts/scoreboard';
 const App = ({ Component, pageProps }: AppProps) => {
+	const [matches, setMatches] = useState(0);
+	const [playerPoints, setPlayerPoints] = useState(0);
+	const [machinePoints, setMachinePoints] = useState(0);
+	const [showModal, setShowModal] = useState(false);
+	const [ruleType, setRuleType] = useState(0);
+
+	function updateNumberMatches(math: number) {
+		const value = matches + math;
+		setMatches(value);
+	}
+	function updatePlayerPoints(point: number) {
+		const value = playerPoints + point;
+		setPlayerPoints(value);
+	}
+	function updateMachinePoints(point: number) {
+		const value = machinePoints + point;
+		setMachinePoints(value);
+	}
+
+	function showHideModal() {
+		setShowModal(!showModal);
+	}
+
+	function updateRule(rule: number) {
+		setRuleType(rule);
+	}
+
 	return (
 		<>
 			<Head>
@@ -22,8 +51,30 @@ const App = ({ Component, pageProps }: AppProps) => {
 					content="A simple project starter to work with TypeScript, React, NextJS and Styled Components"
 				/>
 			</Head>
-			<GlobalStyle />
-			<Component {...pageProps} />
+
+			<scoreboardContext.Provider
+				value={{
+					matches,
+					updateNumberMatches,
+					playerPoints,
+					machinePoints,
+					updatePlayerPoints,
+					updateMachinePoints,
+					showModal,
+					showHideModal,
+					ruleType,
+					updateRule
+				}}
+			>
+				<scoreboardContext.Consumer>
+					{() => (
+						<>
+							<GlobalStyle />
+							<Component {...pageProps} />
+						</>
+					)}
+				</scoreboardContext.Consumer>
+			</scoreboardContext.Provider>
 		</>
 	);
 };

@@ -33,7 +33,7 @@ const Result: React.FC<ResultProps> = ({ Time, Winner, States, Functions }) => {
 		if (Winner?.win == 'machine') {
 			text = 'You lose';
 		} else if (Winner?.win == 'player') {
-			text = 'You lose';
+			text = 'You win';
 		} else {
 			text = 'nobody won';
 		}

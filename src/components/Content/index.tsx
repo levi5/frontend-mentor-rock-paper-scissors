@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import Paper from 'components/Paper';
 import Rock from 'components/Rock';
@@ -11,8 +11,14 @@ import { values } from '../../config/data';
 import { Values, PlayerWinner } from '../../@types';
 
 import * as styles from './styles';
+import scoreboardContext from 'contexts/scoreboard';
 
 const Content = () => {
+	const {
+		updateNumberMatches,
+		updatePlayerPoints,
+		updateMachinePoints
+	} = useContext(scoreboardContext);
 	const [machineState, setMachineState] = useState('');
 	const [option, setPlayerState] = useState('');
 	const [showResult, setShowResult] = useState(false);
@@ -80,6 +86,13 @@ const Content = () => {
 		const machineOption = machine();
 		const result = winner(playerOption, machineOption);
 
+		if (result.win === 'player') {
+			updatePlayerPoints(1);
+		} else if (result.win) {
+			updateMachinePoints(1);
+		}
+
+		updateNumberMatches(1);
 		setMachineState(machineOption.name);
 		setWinner(result);
 		setTimeout(() => {
