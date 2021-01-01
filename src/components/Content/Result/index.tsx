@@ -30,9 +30,9 @@ const Result: React.FC<ResultProps> = ({ Time, Winner, States, Functions }) => {
 	function resultPlayerWinner(): JSX.Element {
 		let text = '';
 
-		if (Winner?.win == 'machine') {
+		if (Winner.win === 'machine') {
 			text = 'You lose';
-		} else if (Winner?.win == 'player') {
+		} else if (Winner.win === 'player') {
 			text = 'You win';
 		} else {
 			text = 'nobody won';
@@ -51,7 +51,11 @@ const Result: React.FC<ResultProps> = ({ Time, Winner, States, Functions }) => {
 			<div id="contains-result">
 				<div id="contains-result-player">
 					<h3>you picked</h3>
-					<div className="contains-result-buttons">
+					<div
+						className={`contains-result-buttons ${
+							Winner.win === 'player' ? 'win' : ''
+						}`}
+					>
 						{renderPlayerOption()}
 					</div>
 				</div>
@@ -63,7 +67,11 @@ const Result: React.FC<ResultProps> = ({ Time, Winner, States, Functions }) => {
 					{
 						<>
 							<h3>the house picked</h3>
-							<div className="contains-result-buttons">
+							<div
+								className={`contains-result-buttons ${
+									Winner.win === 'machine' ? 'win' : ''
+								}`}
+							>
 								{renderMachineOption()}
 							</div>
 						</>

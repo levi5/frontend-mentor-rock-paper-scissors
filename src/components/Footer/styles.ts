@@ -17,6 +17,8 @@ const Footer = styled.footer`
 		letter-spacing: 0.2rem;
 		color: #fff;
 		cursor: pointer;
+		position: relative;
+		z-index: 9;
 	}
 
 	@media (max-width: 620px) {
