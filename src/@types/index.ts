@@ -1,3 +1,10 @@
+export interface OptionComponentProps {
+	Type: string;
+}
+export interface OptionComponentPropsStyle {
+	Type: string;
+}
+
 export type Values = {
 	id: number;
 	name: string;

@@ -43,6 +43,26 @@ button{
     cursor:pointer;
 }
 
+::-webkit-scrollbar-track {
+    background-color: #161719;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background-color: #161719;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #606e85;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: #161719;
+}
+
 `;
 
 export default GlobalStyle;

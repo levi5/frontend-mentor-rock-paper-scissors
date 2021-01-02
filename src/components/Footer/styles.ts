@@ -5,9 +5,19 @@ const Footer = styled.footer`
 	height: 100%;
 	grid-area: FT;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	align-items: center;
 	padding: 2rem;
+
+	#swap-game img {
+		width: 4rem;
+		height: 4rem;
+		cursor: pointer;
+		transition: all 0.5s;
+	}
+	#swap-game img:hover {
+		transform: scale(1.2);
+	}
 
 	#footer-content {
 		padding: 1rem 3rem;
@@ -23,6 +33,13 @@ const Footer = styled.footer`
 
 	@media (max-width: 620px) {
 		justify-content: center;
+		#footer-content {
+			left: -3%;
+		}
+		#swap-game {
+			position: relative;
+			left: -28%;
+		}
 	}
 `;
 

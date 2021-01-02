@@ -49,7 +49,7 @@ const Wrapper = styled.div`
 
 	.modal-content .image-rule {
 		width: 24.4rem;
-		height: 21rem;
+		height: 23rem;
 		margin: 3rem 2.5rem 1rem 2.5rem;
 	}
 

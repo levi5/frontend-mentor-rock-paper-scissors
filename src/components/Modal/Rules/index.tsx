@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import * as styles from './styles';
 
 const RPS = () => {
-	const { ruleType, showHideModal } = useContext(scoreboardContext);
+	const { gameType, showHideModal } = useContext(scoreboardContext);
 
 	function closeModal() {
 		showHideModal();
@@ -20,7 +20,7 @@ const RPS = () => {
 						/>
 					</button>
 				</div>
-				{ruleType == 0 ? (
+				{gameType == 0 ? (
 					<img
 						className="image-rule"
 						src="/assets/images/image-rules.svg"

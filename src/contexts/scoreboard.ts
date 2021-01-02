@@ -12,7 +12,7 @@ const scoreboardContext = createContext({
 
 	showModal: false,
 	showHideModal: (): void => {},
-	ruleType: 0,
+	gameType: 0,
 	updateRule: (rule: number): void => {}
 });
 

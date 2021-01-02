@@ -5,7 +5,7 @@ import scoreboardContext from 'contexts/scoreboard';
 
 const Header = () => {
 	const [pointsState, setPoints] = useState(0);
-	const { playerPoints } = useContext(scoreboardContext);
+	const { playerPoints, gameType } = useContext(scoreboardContext);
 
 	useEffect(() => {
 		setPoints(playerPoints);
@@ -15,7 +15,11 @@ const Header = () => {
 		<styles.Header>
 			<div id="scoreboard">
 				<div className="group-01">
-					<img src="/assets/images/logo.svg" />
+					{gameType === 0 ? (
+						<img src="/assets/images/logo.svg" alt="logo" />
+					) : (
+						<img src="/assets/images/logo-bonus.svg" alt="logo" />
+					)}
 				</div>
 
 				<div className="group-01">

@@ -1,23 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
-import Paper from 'components/Paper';
-import Rock from 'components/Rock';
-import Scissors from 'components/Scissors';
 import Result from './Result/index';
-
-import { values } from '../../config/data';
+import {
+	valuesRockPaperScissors,
+	valuesRockPaperScissorsLizardSpock
+} from '../../config/data';
 
 import { Values, PlayerWinner } from '../../@types';
 
 import * as styles from './styles';
 import scoreboardContext from 'contexts/scoreboard';
+import RPS from './RPS';
+import RPSLS from './RPSLS';
 
 const Content = () => {
 	const {
 		updateNumberMatches,
 		updatePlayerPoints,
-		updateMachinePoints
+		updateMachinePoints,
+		gameType
 	} = useContext(scoreboardContext);
 	const [machineState, setMachineState] = useState('');
 	const [option, setPlayerState] = useState('');
@@ -31,10 +33,20 @@ const Content = () => {
 			win: ''
 		})
 	);
-	// const [objOptions, setOptions] = useState((): Array<Values> => values);
+	const [options, setOptions] = useState(
+		(): Array<Values> => valuesRockPaperScissors
+	);
+
+	useEffect(() => {
+		if (gameType === 0) {
+			setOptions(valuesRockPaperScissors);
+		} else {
+			setOptions(valuesRockPaperScissorsLizardSpock);
+		}
+	}, [gameType]);
 
 	function player(option: string) {
-		const [playerOption] = values.filter((item) => {
+		const [playerOption] = options.filter((item) => {
 			const { name } = item;
 			if (name === option) return item;
 		});
@@ -42,8 +54,8 @@ const Content = () => {
 	}
 
 	function machine() {
-		const number = Math.floor(Math.random() * values.length) + 1;
-		const [machineOption] = values.filter((item) => {
+		const number = Math.floor(Math.random() * options.length) + 1;
+		const [machineOption] = options.filter((item) => {
 			const { id } = item;
 			if (id === number) return item;
 		});
@@ -100,7 +112,7 @@ const Content = () => {
 		}, 800);
 	}
 
-	function select(e: any) {
+	function select(e: any): void {
 		const { option } = e.target.dataset;
 		setPlayerState(option);
 		game(option);
@@ -111,38 +123,18 @@ const Content = () => {
 		setShowResult(!showResult);
 	}
 
+	function test(): JSX.Element {
+		if (gameType === 0) {
+			return <RPS Select={select} />;
+		} else {
+			return <RPSLS Select={select} />;
+		}
+	}
+
 	return (
 		<styles.Wrapper>
 			{!showResult ? (
-				<section id="contains-buttons">
-					<img
-						id="bg"
-						src="/assets/images/bg-triangle.svg"
-						alt="background triangle"
-					/>
-					<div
-						className="contains_paper-button"
-						data-option={'paper'}
-						onClick={select}
-					>
-						<Paper />
-					</div>
-					<div
-						className="contains_scissors-button"
-						data-option={'scissors'}
-						onClick={select}
-					>
-						<Scissors />
-					</div>
-
-					<div
-						className="contains_rock-button"
-						data-option={'rock'}
-						onClick={select}
-					>
-						<Rock />
-					</div>
-				</section>
+				test()
 			) : (
 				<Result
 					Time={time}

@@ -10,18 +10,29 @@ const App = ({ Component, pageProps }: AppProps) => {
 	const [playerPoints, setPlayerPoints] = useState(0);
 	const [machinePoints, setMachinePoints] = useState(0);
 	const [showModal, setShowModal] = useState(false);
-	const [ruleType, setRuleType] = useState(0);
+	const [gameType, setgameType] = useState(0);
 
 	function updateNumberMatches(math: number) {
 		const value = matches + math;
 		setMatches(value);
 	}
 	function updatePlayerPoints(point: number) {
-		const value = playerPoints + point;
+		let value = 0;
+		if (point < 0) {
+			value = 0;
+		} else {
+			value = playerPoints + point;
+		}
+
 		setPlayerPoints(value);
 	}
 	function updateMachinePoints(point: number) {
-		const value = machinePoints + point;
+		let value = 0;
+		if (point < 0) {
+			value = 0;
+		} else {
+			value = machinePoints + point;
+		}
 		setMachinePoints(value);
 	}
 
@@ -30,7 +41,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 	}
 
 	function updateRule(rule: number) {
-		setRuleType(rule);
+		setgameType(rule);
 	}
 
 	return (
@@ -62,7 +73,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 					updateMachinePoints,
 					showModal,
 					showHideModal,
-					ruleType,
+					gameType,
 					updateRule
 				}}
 			>

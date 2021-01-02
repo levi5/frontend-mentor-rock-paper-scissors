@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import Content from 'components/Content';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
-import RPS from 'components/Modal/Rules/RPS';
+import RPS from 'components/Modal/Rules';
 
 import scoreboardContext from 'contexts/scoreboard';
 import * as styles from './styles';

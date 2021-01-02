@@ -1,6 +1,8 @@
-import Paper from 'components/Paper';
-import Rock from 'components/Rock';
-import Scissors from 'components/Scissors';
+import Paper from 'components/Content/Options/Paper';
+import Rock from 'components/Content/Options/Rock';
+import Scissors from 'components/Content/Options/Scissors';
+import Lizard from 'components/Content/Options/Lizard';
+import Spock from 'components/Content/Options/Spock';
 
 import { ResultProps } from '../../../@types';
 
@@ -11,11 +13,15 @@ const Result: React.FC<ResultProps> = ({ Time, Winner, States, Functions }) => {
 		let button: JSX.Element;
 
 		if (name === 'paper') {
-			button = <Paper />;
+			button = <Paper Type="large" />;
 		} else if (name === 'scissors') {
-			button = <Scissors />;
+			button = <Scissors Type="large" />;
+		} else if (name === 'rock') {
+			button = <Rock Type="large" />;
+		} else if (name === 'lizard') {
+			button = <Lizard Type="large" />;
 		} else {
-			button = <Rock />;
+			button = <Spock Type="large" />;
 		}
 		return button;
 	}
