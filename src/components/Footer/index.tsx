@@ -11,9 +11,11 @@ const Footer = () => {
 		updatePlayerPoints,
 		updateMachinePoints
 	} = useContext(scoreboardContext);
+
 	function openRules() {
 		showHideModal();
 	}
+
 	function swapGame() {
 		let game;
 		if (gameType === 0) {
@@ -26,6 +28,7 @@ const Footer = () => {
 		updatePlayerPoints(-1);
 		updateMachinePoints(-1);
 	}
+
 	return (
 		<styles.Footer>
 			<div id="swap-game" onClick={swapGame}>
@@ -33,10 +36,14 @@ const Footer = () => {
 					<img
 						id="RPS"
 						src="/assets/images/hand-rock-100.png"
-						alt=""
+						alt="hand-rock"
 					/>
 				) : (
-					<img id="RPSLS" src="/assets/images/spock-100.png" alt="" />
+					<img
+						id="RPSLS"
+						src="/assets/images/spock-100.png"
+						alt="spock"
+					/>
 				)}
 			</div>
 			<div id="footer-content" onClick={openRules}>

@@ -1,18 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useContext, useEffect, useState } from 'react';
 
-import Result from './Result/index';
+import Result from '../Result/index';
+import RPS from '../RPS';
+import RPSLS from '../RPSLS';
+
+import scoreboardContext from 'contexts/scoreboard';
+import { game } from 'Game';
+
 import {
 	valuesRockPaperScissors,
 	valuesRockPaperScissorsLizardSpock
-} from '../../config/data';
+} from '../../../config/data';
 
-import { Values, PlayerWinner } from '../../@types';
-
+import { Values, PlayerWinner } from '@types';
 import * as styles from './styles';
-import scoreboardContext from 'contexts/scoreboard';
-import RPS from './RPS';
-import RPSLS from './RPSLS';
 
 const Content = () => {
 	const {
@@ -21,6 +23,7 @@ const Content = () => {
 		updateMachinePoints,
 		gameType
 	} = useContext(scoreboardContext);
+
 	const [machineState, setMachineState] = useState('');
 	const [option, setPlayerState] = useState('');
 	const [showResult, setShowResult] = useState(false);
@@ -45,68 +48,18 @@ const Content = () => {
 		}
 	}, [gameType]);
 
-	function player(option: string) {
-		const [playerOption] = options.filter((item) => {
-			const { name } = item;
-			if (name === option) return item;
-		});
-		return playerOption;
-	}
+	function run(option: string) {
+		const { winner, machineOption } = game(option, options);
 
-	function machine() {
-		const number = Math.floor(Math.random() * options.length) + 1;
-		const [machineOption] = options.filter((item) => {
-			const { id } = item;
-			if (id === number) return item;
-		});
-		return machineOption;
-	}
-
-	function winner(player: Values, machine: Values) {
-		if (player.id !== machine.id) {
-			let playerWinner;
-
-			if (player.wins.indexOf(machine.id) !== -1) {
-				playerWinner = {
-					id: player.id,
-					name: player.name,
-					win: 'player'
-				};
-			}
-
-			if (!playerWinner) {
-				const machineWinner = {
-					id: machine.id,
-					name: machine.name,
-					win: 'machine'
-				};
-				return machineWinner;
-			}
-
-			return playerWinner;
-		} else {
-			return {
-				id: -1,
-				name: '',
-				win: ''
-			};
-		}
-	}
-
-	function game(option: string) {
-		const playerOption = player(option);
-		const machineOption = machine();
-		const result = winner(playerOption, machineOption);
-
-		if (result.win === 'player') {
+		if (winner.win === 'player') {
 			updatePlayerPoints(1);
-		} else if (result.win) {
+		} else if (winner.win) {
 			updateMachinePoints(1);
 		}
 
 		updateNumberMatches(1);
 		setMachineState(machineOption.name);
-		setWinner(result);
+		setWinner(winner);
 		setTimeout(() => {
 			setTime(true);
 		}, 800);
@@ -115,15 +68,16 @@ const Content = () => {
 	function select(e: any): void {
 		const { option } = e.target.dataset;
 		setPlayerState(option);
-		game(option);
+		run(option);
 		setShowResult(!showResult);
 	}
+
 	function back() {
 		setTime(false);
 		setShowResult(!showResult);
 	}
 
-	function test(): JSX.Element {
+	function rendersGameOptions(): JSX.Element {
 		if (gameType === 0) {
 			return <RPS Select={select} />;
 		} else {
@@ -134,7 +88,7 @@ const Content = () => {
 	return (
 		<styles.Wrapper>
 			{!showResult ? (
-				test()
+				rendersGameOptions()
 			) : (
 				<Result
 					Time={time}

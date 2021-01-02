@@ -1,24 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from 'react';
+
 import Lizard from 'components/Content/Options/Lizard';
 import Paper from 'components/Content/Options/Paper';
 import Rock from 'components/Content/Options/Rock';
 import Scissors from 'components/Content/Options/Scissors';
 import Spock from 'components/Content/Options/Spock';
-import { useEffect, useState } from 'react';
 
+import { RPSProps } from '@types';
 import * as styles from './styles';
-
-interface RPSProps {
-	Select(e: any): void;
-}
 
 const RPSLS: React.FC<RPSProps> = ({ Select }) => {
 	const [windowWidth, setWindowWidth] = useState(0);
-	// const [windowHeight, setWindowHeight] = useState(0);
+
 	const resizeWindow = () => {
 		const width = window.innerWidth;
 		setWindowWidth(width);
-		// setWindowHeight(window.innerHeight);
 	};
 
 	useEffect(() => {

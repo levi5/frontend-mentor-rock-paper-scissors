@@ -8,6 +8,7 @@ const RPS = () => {
 	function closeModal() {
 		showHideModal();
 	}
+
 	return (
 		<styles.Wrapper>
 			<div className="modal-content">
@@ -37,5 +38,4 @@ const RPS = () => {
 		</styles.Wrapper>
 	);
 };
-
 export default RPS;

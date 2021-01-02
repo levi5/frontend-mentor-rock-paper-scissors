@@ -8,7 +8,6 @@ const Wrapper = styled.div`
 	grid-template-rows: 20rem auto 6rem;
 	grid-template-columns: 100%;
 	grid-template-areas: 'HD' 'CT' 'FT';
-
 	overflow-y: auto;
 	overflow-x: hidden;
 `;

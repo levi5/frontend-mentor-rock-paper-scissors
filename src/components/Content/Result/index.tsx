@@ -1,38 +1,10 @@
-import Paper from 'components/Content/Options/Paper';
-import Rock from 'components/Content/Options/Rock';
-import Scissors from 'components/Content/Options/Scissors';
-import Lizard from 'components/Content/Options/Lizard';
-import Spock from 'components/Content/Options/Spock';
+import Option from './Option';
 
-import { ResultProps } from '../../../@types';
+import { ResultProps } from '@types';
 
 import * as styles from './styles';
 
 const Result: React.FC<ResultProps> = ({ Time, Winner, States, Functions }) => {
-	function renderOption(name: string) {
-		let button: JSX.Element;
-
-		if (name === 'paper') {
-			button = <Paper Type="large" />;
-		} else if (name === 'scissors') {
-			button = <Scissors Type="large" />;
-		} else if (name === 'rock') {
-			button = <Rock Type="large" />;
-		} else if (name === 'lizard') {
-			button = <Lizard Type="large" />;
-		} else {
-			button = <Spock Type="large" />;
-		}
-		return button;
-	}
-
-	function renderPlayerOption() {
-		return renderOption(States.playerState);
-	}
-	function renderMachineOption() {
-		return renderOption(States.machineState);
-	}
-
 	function resultPlayerWinner(): JSX.Element {
 		let text = '';
 
@@ -62,7 +34,7 @@ const Result: React.FC<ResultProps> = ({ Time, Winner, States, Functions }) => {
 							Winner.win === 'player' ? 'win' : ''
 						}`}
 					>
-						{renderPlayerOption()}
+						<Option name={States.playerState} />
 					</div>
 				</div>
 
@@ -78,7 +50,7 @@ const Result: React.FC<ResultProps> = ({ Time, Winner, States, Functions }) => {
 									Winner.win === 'machine' ? 'win' : ''
 								}`}
 							>
-								{renderMachineOption()}
+								<Option name={States.machineState} />
 							</div>
 						</>
 					}

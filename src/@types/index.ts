@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export interface RPSProps {
+	Select(e: any): void;
+}
+
 export interface OptionComponentProps {
 	Type: string;
 }

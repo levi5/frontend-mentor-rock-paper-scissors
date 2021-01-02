@@ -22,7 +22,7 @@ const Footer = styled.footer`
 	#footer-content {
 		padding: 1rem 3rem;
 		border-radius: 0.8rem;
-		border: 2px solid hsl(217, 16%, 45%);
+		border: 2px solid #606e85;
 		font-size: 1.6rem;
 		letter-spacing: 0.2rem;
 		color: #fff;

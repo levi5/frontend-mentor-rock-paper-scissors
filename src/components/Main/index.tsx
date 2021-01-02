@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import Content from 'components/Content';
+import Content from 'components/Content/Wrapper';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
 import RPS from 'components/Modal/Rules';
@@ -19,5 +19,4 @@ const Main = () => {
 		</styles.Wrapper>
 	);
 };
-
 export default Main;
