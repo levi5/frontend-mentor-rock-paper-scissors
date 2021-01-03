@@ -45,7 +45,9 @@ You can use any tools you like to help you complete the challenge. So if you've 
 Your users should be able to:
 
 ✅  View the optimal layout for the game depending on their device's screen size (Mobile: 375px, Desktop: 1366px)
+
 ✅  Play Rock, Paper, Scissors against the computer
+
 ✅  Bonus: Play Rock, Paper, Scissors, Lizard, Spock against the computer (optional)
 
 ### Built With
