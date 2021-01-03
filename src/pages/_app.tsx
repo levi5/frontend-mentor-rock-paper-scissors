@@ -53,7 +53,10 @@ const App = ({ Component, pageProps }: AppProps) => {
 					rel="stylesheet"
 				/>
 
-				<link rel="shortcut icon" href="" />
+				<link
+					rel="shortcut icon"
+					href="/assets/images/favicon-32x32.png"
+				/>
 				<link rel="apple-touch-icon" href="" />
 				<link rel="description" href="" />
 				<link rel="manifest" href="/manifest.json" />
