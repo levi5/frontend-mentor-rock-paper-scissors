@@ -2,7 +2,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://github.com/levi5/frontend-mentor-Todo-app">
+    <a href="https://github.com/levi5/frontend-mentor-rock-paper-scissors">
       Solution
     </a>
     <span> | </span>
