@@ -57,6 +57,8 @@ Your users should be able to:
 
 ### Run
 
+ > *npm install*
+
  > *npm run build*
 
  > *npm run start*
