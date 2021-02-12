@@ -9,6 +9,10 @@
     <a href="https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH">
       Challenge
     </a>
+	<span> | </span>
+    <a href="https://frontend-mentor-rock-paper-scissors-chi.vercel.app">
+      WEB
+    </a>
   </h3>
 </div>
 
